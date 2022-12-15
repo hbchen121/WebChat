@@ -1,0 +1,78 @@
+<!-- chat/templates/chat/room.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>城南·聊天机器人</title>
+</head>
+<body>
+     <textarea id="chat-log" cols="100" rows="20" readonly></textarea><br/>
+    <input id="chat-message-input" type="text" size="100" placeholder="输入`help`获取帮助信息. 回车默认发送给 ChatGPT"/><br/>
+    <input id="chat-message-submit-chatgpt" type="button" value="Send ChatGPT"/>
+    <input id="chat-message-submit-xiaov" type="button" value="Send Xiaov"/>
+
+   <script>
+    var wss_protocol = (window.location.protocol == 'https:') ? 'wss://': 'ws://';
+    var chatSocket = new WebSocket(
+        wss_protocol + window.location.host + '/ws/bots/'
+        );
+
+    chatSocket.onopen = function(e) {
+        document.querySelector('#chat-log').value += ('欢迎使用 城南·聊天机器人. 可以`help`获取帮助信息. ChatGPT 回复较慢，请耐心等待\n')
+    }
+
+    chatSocket.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        var message = data['message'];
+        document.querySelector('#chat-log').value += (message + '\n');
+    };
+
+    chatSocket.onclose = function(e) {
+        document.querySelector('#chat-log').value += ('Socket closed unexpectedly, please reload the page.\n') + wss_protocol + window.location.host + '\n127.0.0.1:8000'
+    };
+
+    document.querySelector('#chat-message-input').focus();
+    document.querySelector('#chat-message-input').onkeyup = function(e) {
+        if (e.keyCode === 13) {  // enter, return
+            document.querySelector('#chat-message-submit-chatgpt').click();
+        }
+    };
+
+    document.querySelector('#chat-message-submit-chatgpt').onclick = function(e) {
+        var messageInputDom = document.querySelector('#chat-message-input');
+        var message = messageInputDom.value;
+        chatSocket.send(JSON.stringify({
+            'message': message,
+            'source': "chatgpt"
+        }));
+        messageInputDom.value = '';
+    };
+
+    document.querySelector('#chat-message-submit-xiaov').onclick = function(e) {
+        var messageInputDom = document.querySelector('#chat-message-input');
+        var message = messageInputDom.value;
+        chatSocket.send(JSON.stringify({
+            'message': message,
+            'source': "xiaov"
+        }));
+        messageInputDom.value = '';
+    };
+    </script>
+    <!--链接（加上target="_blank"这个会在新窗口打开）-->
+    <br/> <br/> <br/>
+    本项目的 github 源码地址为：
+    <a href="https://github.com/hbchen121/WebChat">WebChat github<a/>
+    (可能需要科学上网才能访问) <br/>
+
+    {% load static %}
+    欢迎添加我的微信交流，请备注来意: hbchen121 或扫码 <br/>
+    <img src="{% static 'images/weixin.jpg' %}" width="25%" height="25%" /> <br/>
+    <!--换行<br/>-->
+    同时欢迎关注我的公众号：<strong>城花散尽</strong>
+     <br/>
+
+     <img src="{% static 'images/qcode.png' %}" width="25%" height="25%" /> <br/>
+
+
+</body>
+</html>
