@@ -4,6 +4,12 @@
 > 
 > 选择网页版，而不是植入微信公众号或者个人微信，是因为本人尝试过后面两种，需要的权限更多，网页版则要求更少，更加可行。
 
+## Notices
+
+> 本项目的 ChatGPT 借助 [acheong08/ChatGPT](https://github.com/acheong08/ChatGPT) 实现，
+但是 `The project has been archived due to severe limitations by Cloudflare.`， 所以 ChatGPT 暂时不可用。
+我将持续关注其进度。
+
 ## 项目总览
 
 目前项目部署在服务器[Link](http://39.108.15.245:8000/bots/) 中，参考[聊天机器人博客](https://www.jb51.net/article/213763.htm) 以及他的 [github 代码](https://github.com/shiyunbo/django-channels-chatbot) 进行修改, 作者提到原理：
@@ -64,7 +70,7 @@ python3 manage.py runserver
 ```
 
 如果是服务器记得开放 8000 端口，同时执行ip为`0.0.0.0`下面，不然无法外网访问：（参考 [csdn](https://blog.csdn.net/hlx20080808/article/details/121474156) ）
-```shell
+```shell 
 # 不使用ChatGPT 时
 python3 manage.py runserver 0.0.0.0:8000
 
