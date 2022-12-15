@@ -6,7 +6,7 @@
 
 ## 项目总览
 
-参考[聊天机器人博客](https://www.jb51.net/article/213763.htm) 以及他的 [github 代码](https://github.com/shiyunbo/django-channels-chatbot) 进行修改, 作者提到原理：
+目前项目部署在服务器[Link](http://39.108.15.245:8000/bots/) 中，参考[聊天机器人博客](https://www.jb51.net/article/213763.htm) 以及他的 [github 代码](https://github.com/shiyunbo/django-channels-chatbot) 进行修改, 作者提到原理：
 
 - 用户在聊天界面调用Celery异步任务，Celery异步任务执行完毕后发送结果给channels，
   然后channels通过websocket将结果实时推送给用户。
@@ -29,8 +29,7 @@
 - win 下载解压后执行 `redis-server.exe redis.windows.conf`
 - ubuntu 通过 apt 安装，运行 `redis-server`，若已开启则需要kill掉重启，参考[这个](https://blog.csdn.net/weixin_43493397/article/details/120342624) 
   ，即`redis-cli`拿到pid，然后无缝运行 `kill -9 72431; redis-server`
-
-ubuntu 上 redis [配置教程](https://zhuanlan.zhihu.com/p/28101275) 
+- ubuntu 上 redis [配置教程](https://zhuanlan.zhihu.com/p/28101275) 
 
 ## Celery
 
