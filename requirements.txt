@@ -50,3 +50,4 @@ vine==5.0.0
 w3lib==1.22.0
 wcwidth==0.2.5
 zope.interface==5.4.0
+importlib-metadata==4.13.0

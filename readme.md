@@ -42,11 +42,13 @@ pip3 install -r requirements.txt
 
 ### redis
 
-使用了 redis做数据春丽，根据[教程](https://www.runoob.com/redis/redis-install.html) 安装
+使用了 redis做数据存储，根据[教程](https://www.runoob.com/redis/redis-install.html) 安装
 
 - win 下载解压后执行 `redis-server.exe redis.windows.conf`
-- ubuntu 通过 `sudo apt install redis-server` 安装，运行 `redis-server`，若已开启则需要kill掉重启，参考[这个](https://blog.csdn.net/weixin_43493397/article/details/120342624) 
-  ，即`redis-cli`拿到pid，然后无缝运行 `kill -9 72431; redis-server`
+- ubuntu 通过 `sudo apt install redis-server` 安装，运行 `redis-server`;
+  1. 若已开启则需要 `redis-cli shutdown; redis-server` 重启；
+  2. 或者需要kill掉重启，参考[这个](https://blog.csdn.net/weixin_43493397/article/details/120342624) 
+  ，即`ps -ef|grep redis`拿到pid，然后无缝运行 `kill -9 xxxx; redis-server`
 
 ## Celery
 
@@ -60,6 +62,8 @@ celery -A WebChat worker -l info
 # linux 下需要安装图像界面，因为用了chatGPT，具体参考ChatGPT
 xvfb-run --auto-servernum --server-num=1 --server-args='-screen 0, 1920x1080x24' celery -A WebChat worker -l info
 ```
+
+如果运行出错，可能需要`pip install importlib-metadata==4.13.0`
 
 ## Django 
 最后按那个教程运行 django，
@@ -86,6 +90,12 @@ xvfb-run --auto-servernum --server-num=1 --server-args='-screen 0, 1920x1080x24'
 
 - 如果发现网页报警`Socket closed unexpectedly, please reload the page.`，可能是 requirements.txt 没安装完，也可能是其他错误，在
 `python manage.py` 的 terminal 里查询问题。
+  
+- 如果出现`aioredis.errors.ReplyError: ERR unknown command 'BZPOPMIN'`错误，可能是redis版本不到5.x，需要升级。参考[link](https://blog.csdn.net/guotianqing/article/details/114103122) 进行卸载
+  `apt-get purge --auto-remove redis-server`， 然后使用源码安装方法进行redis安装，仍然参考[link](https://www.runoob.com/redis/redis-install.html),
+  最后添加server的环境路径`export PATH=$PATH:/data/softwares/redis-6.0.8/src`, 这样就能直接
+  `redis-server`
+  
 
 - 微信公众号有 5s 回复限制，超时回复会导致错误，因此ChatGPT 很难接入。
 

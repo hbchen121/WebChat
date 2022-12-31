@@ -7,7 +7,7 @@
 </head>
 <body>
      <textarea id="chat-log" cols="100" rows="20" readonly></textarea><br/>
-    <input id="chat-message-input" type="text" size="100" placeholder="输入`help`获取帮助信息. 回车默认发送给 ChatGPT"/><br/>
+    <input id="chat-message-input" type="text" size="100" placeholder="输入`help`获取帮助信息. 回车默认发送给 XiaoV"/><br/>
     <input id="chat-message-submit-chatgpt" type="button" value="Send ChatGPT"/>
     <input id="chat-message-submit-xiaov" type="button" value="Send Xiaov"/>
 
@@ -34,7 +34,7 @@
     document.querySelector('#chat-message-input').focus();
     document.querySelector('#chat-message-input').onkeyup = function(e) {
         if (e.keyCode === 13) {  // enter, return
-            document.querySelector('#chat-message-submit-chatgpt').click();
+            document.querySelector('#chat-message-submit-xiaov').click();
         }
     };
 
