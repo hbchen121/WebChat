@@ -23,11 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qu%6bif-&h55xiotz7v-bt_*k0o0k+sdzo10ysy3#9rc7f^pzv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = False
 
 # TODO
 # 记得检测 allowed host 正确，你服务器的host
-ALLOWED_HOSTS = ["39.108.15.245", "127.0.0.1"]
+ALLOWED_HOSTS = ["101.42.32.28", "39.108.15.245", "127.0.0.1"]
 
 
 # Application definition

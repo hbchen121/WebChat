@@ -12,7 +12,7 @@
 
 ## 项目总览
 
-目前项目部署在服务器[Link](http://39.108.15.245:8000/bots/) 中，参考[聊天机器人博客](https://www.jb51.net/article/213763.htm) 以及他的 [github 代码](https://github.com/shiyunbo/django-channels-chatbot) 进行修改, 作者提到原理：
+目前项目部署在服务器[Link](http://101.42.32.28:8081/bots/) 中，参考[聊天机器人博客](https://www.jb51.net/article/213763.htm) 以及他的 [github 代码](https://github.com/shiyunbo/django-channels-chatbot) 进行修改, 作者提到原理：
 
 - 用户在聊天界面调用Celery异步任务，Celery异步任务执行完毕后发送结果给channels，
   然后channels通过websocket将结果实时推送给用户。
@@ -73,7 +73,7 @@ python3 manage.py migrate
 python3 manage.py runserver
 ```
 
-如果是服务器记得开放 8000 端口，同时执行ip为`0.0.0.0`下面，不然无法外网访问：（参考 [csdn](https://blog.csdn.net/hlx20080808/article/details/121474156) ）
+如果是服务器记得开放 8000 端口，将服务器ip添加到allowed_host里`WebChat/settings.py:30`，同时执行ip为`0.0.0.0`（见下面），不然无法外网访问：（参考 [csdn](https://blog.csdn.net/hlx20080808/article/details/121474156) ）
 ```shell 
 # 不使用ChatGPT 时
 python3 manage.py runserver 0.0.0.0:8000
