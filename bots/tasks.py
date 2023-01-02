@@ -17,13 +17,23 @@ def add(channel_name, x, y):
     print(message)
 
 
-# from bots.chatGPT.gpt_robot import GPT_Robot
-# chatGPT = GPT_Robot(name="ChatGPT")
+from bots.chatGPT.gpt_robot import GPT_Robot
+
+try:
+    print("ChatGPT 启动中")
+    chatGPT = GPT_Robot(name="ChatGPT")
+    print("ChatGPT 启动成功")
+except:
+    chatGPT = None
+    print("启动 GPT 超时")
+
 
 @shared_task
 def reply_by_chatgpt(channel_name, text):
-    message = "ChatGPT 暂时存在问题，可以先与 小微（xiaoV）互动"
-    # message = chatGPT.send(text, debug=DEBUG)
+    if chatGPT is None:
+        message = "ChatGPT 暂时存在问题，可以先与 小微（xiaoV）互动"
+    else:
+        message = chatGPT.send(text, debug=DEBUG)
     async_to_sync(channel_layer.send)(channel_name, {"type": "chat.message", "message": message, 'source': 'chatGPT'})
     print(message)
 

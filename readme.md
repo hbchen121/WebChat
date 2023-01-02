@@ -6,7 +6,8 @@
 
 ## Notices
 
-> 本项目的 ChatGPT 借助 [acheong08/ChatGPT](https://github.com/acheong08/ChatGPT) 实现，
+> 2023-01-02 最新：ChatGPT 已正常工作
+> > 本项目的 ChatGPT 借助 [acheong08/ChatGPT](https://github.com/acheong08/ChatGPT) 实现，
 但是 `The project has been archived due to severe limitations by Cloudflare.`， 所以 ChatGPT 暂时不可用。
 我将持续关注其进度。
 
@@ -60,7 +61,7 @@ Celery -A WebChat worker -l info -P eventlet
 # Linux 不使用 ChatGPT 时
 celery -A WebChat worker -l info
 # linux 下需要安装图像界面，因为用了chatGPT，具体参考ChatGPT
-xvfb-run --auto-servernum --server-num=1 --server-args='-screen 0, 1920x1080x24' celery -A WebChat worker -l info
+xvfb-run --auto-servernum --server-num=1 --server-args='-screen 0, 720x360x24' celery -A WebChat worker -l info
 ```
 
 如果运行出错，可能需要`pip install importlib-metadata==4.13.0`
@@ -73,13 +74,13 @@ python3 manage.py migrate
 python3 manage.py runserver
 ```
 
-如果是服务器记得开放 8000 端口，将服务器ip添加到allowed_host里`WebChat/settings.py:30`，同时执行ip为`0.0.0.0`（见下面），不然无法外网访问：（参考 [csdn](https://blog.csdn.net/hlx20080808/article/details/121474156) ）
+如果是服务器记得开放 8081 端口，将服务器ip添加到allowed_host里`WebChat/settings.py:30`，同时执行ip为`0.0.0.0`（见下面），不然无法外网访问：（参考 [csdn](https://blog.csdn.net/hlx20080808/article/details/121474156) ）
 ```shell 
 # 不使用ChatGPT 时
-python3 manage.py runserver 0.0.0.0:8000
+python3 manage.py runserver 0.0.0.0:8081
 
 # 使用ChatGPT 时服务器端要使用 xvfg
-xvfb-run --auto-servernum --server-num=1 --server-args='-screen 0, 1920x1080x24' python3 manage.py runserver 0.0.0.0:8000
+xvfb-run --auto-servernum --server-num=1 --server-args='-screen 0, 720x360x24' python3 manage.py runserver 0.0.0.0:8081
 ```
 
 ### issue
@@ -103,6 +104,11 @@ xvfb-run --auto-servernum --server-num=1 --server-args='-screen 0, 1920x1080x24'
 
 ## others
 
-欢迎大家关注我的公众号：
+其他好玩的东西：
+
+[QQChatGPT 聊天机器人]()
+
+
+### 欢迎大家关注我的公众号：
 
 ![QCode](bots/static/images/qcode.png)
