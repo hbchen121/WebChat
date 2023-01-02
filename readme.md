@@ -106,8 +106,9 @@ xvfb-run --auto-servernum --server-num=1 --server-args='-screen 0, 720x360x24' p
 
 其他好玩的东西：
 
-[QQChatGPT 聊天机器人]()
-
+- [WebChat 网页聊天机器人](https://github.com/hbchen121/WebChat)
+- [QQChatGPT 聊天机器人](https://github.com/hbchen121/QQChatGPT)
+- [WXSA_ROBOT 微信公众平台机器人](https://github.com/hbchen121/wxsa_robot)
 
 ### 欢迎大家关注我的公众号：
 
